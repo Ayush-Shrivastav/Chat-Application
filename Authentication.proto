@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package Authentication;
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc AccessProtectedResource(Empty) returns (AccessProtectedResourceResponse);
+  rpc CleanupDb(Empty) returns (Empty);
+}
+
+message RegisterRequest {
+  string email = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message RegisterResponse {
+  string message = 1;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message AccessProtectedResourceResponse {
+  string message = 1;
+}
+
+message Empty {}
