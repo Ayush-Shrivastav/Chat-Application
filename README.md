@@ -22,18 +22,22 @@ This project demonstrates how to implement email-based authentication using gRPC
 
 ## Installation
 
-1. Clone the Repo and create a virtual environment and activate it:
+1. Clone the Repo and cd to authentication service
+2. Create a virtual environment and activate it:
     ```bash
     python3 -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
-
-2. Install the dependencies:
+3. Create and edit the .env file and fill the required values:
+    ```bash
+   cp .env.example .env
+    ```
+4. Install the dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Generate the gRPC code from the protobuf file:
+5. Generate the gRPC code from the protobuf file:
     ```bash
     python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. Authentication.proto
     ```

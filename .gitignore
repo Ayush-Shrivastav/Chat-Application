@@ -1,56 +1,96 @@
-.DS_Store
-.huskyrc.json
-out
-log.log
-**/node_modules
+# Ignore Python-specific files
+__pycache__/
 *.pyc
-*.vsix
-envVars.txt
-**/.vscode/.ropeproject/**
-**/testFiles/**/.cache/**
-*.noseids
-.nyc_output
-.vscode-test
-__pycache__
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+VENV/
+*.egg
+*.egg-info
+dist/
+build/
+*.egg-info/
+
+# Ignore Virtual environment folders
+.venv/
+env/
+
+# Ignore Editor-specific files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Ignore log files and databases
+*.log
+*.sqlite3
+
+# Ignore compiled files and binaries
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.lo
+*.la
+*.class
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore deployment files
+/deployment/*.yaml
+/docker-compose.yml
+
+# Ignore Docker files
+**/Dockerfile
+
+# Ignore node_modules
+node_modules/
 npm-debug.log
-**/.mypy_cache/**
-!yarn.lock
+yarn-error.log
+
+# Ignore generated protocol buffer files
+*.pb.go
+*.pb.py
+
+# Ignore other build artifacts
+build/
+dist/
+
+# Ignore coverage reports
 coverage/
-cucumber-report.json
-**/.vscode-test/**
-**/.vscode test/**
-**/.vscode-smoke/**
-**/.venv*/
-port.txt
-precommit.hook
-python_files/lib/**
-python_files/get-pip.py
-debug_coverage*/**
-languageServer/**
-languageServer.*/**
-bin/**
-obj/**
-.pytest_cache
-tmp/**
-.python-version
-.vs/
-test-results*.xml
-xunit-test-results.xml
-build/ci/performance/performance-results.json
-!build/
-debug*.log
-debugpy*.log
-pydevd*.log
-nodeLanguageServer/**
-nodeLanguageServer.*/**
-dist/**
-# translation files
-*.xlf
-package.nls.*.json
-l10n/
-python-env-tools/**
+*.cover
+*.coverage
+*.coverage.*
+*.cov
+*.lcov
+
+# Ignore environment variable files
+.env
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore mypy
+.mypy_cache/
+dmypy.json
+dmypy.json.*/
+
+# Ignore jupyter notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore IntelliJ IDEA settings
+.idea/
 
 *.db
-
-.vscode/*
-logs
