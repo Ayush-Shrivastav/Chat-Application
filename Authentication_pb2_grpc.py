@@ -40,22 +40,22 @@ class AuthServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Register = channel.unary_unary(
-                '/Proto.AuthService/Register',
+                '/Authentication.AuthService/Register',
                 request_serializer=Authentication__pb2.RegisterRequest.SerializeToString,
                 response_deserializer=Authentication__pb2.RegisterResponse.FromString,
                 _registered_method=True)
         self.Login = channel.unary_unary(
-                '/Proto.AuthService/Login',
+                '/Authentication.AuthService/Login',
                 request_serializer=Authentication__pb2.LoginRequest.SerializeToString,
                 response_deserializer=Authentication__pb2.LoginResponse.FromString,
                 _registered_method=True)
         self.AccessProtectedResource = channel.unary_unary(
-                '/Proto.AuthService/AccessProtectedResource',
+                '/Authentication.AuthService/AccessProtectedResource',
                 request_serializer=Authentication__pb2.Empty.SerializeToString,
                 response_deserializer=Authentication__pb2.AccessProtectedResourceResponse.FromString,
                 _registered_method=True)
         self.CleanupDb = channel.unary_unary(
-                '/Proto.AuthService/CleanupDb',
+                '/Authentication.AuthService/CleanupDb',
                 request_serializer=Authentication__pb2.Empty.SerializeToString,
                 response_deserializer=Authentication__pb2.Empty.FromString,
                 _registered_method=True)
@@ -113,9 +113,9 @@ def add_AuthServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'Proto.AuthService', rpc_method_handlers)
+            'Authentication.AuthService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('Proto.AuthService', rpc_method_handlers)
+    server.add_registered_method_handlers('Authentication.AuthService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -136,7 +136,7 @@ class AuthService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/Proto.AuthService/Register',
+            '/Authentication.AuthService/Register',
             Authentication__pb2.RegisterRequest.SerializeToString,
             Authentication__pb2.RegisterResponse.FromString,
             options,
@@ -163,7 +163,7 @@ class AuthService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/Proto.AuthService/Login',
+            '/Authentication.AuthService/Login',
             Authentication__pb2.LoginRequest.SerializeToString,
             Authentication__pb2.LoginResponse.FromString,
             options,
@@ -190,7 +190,7 @@ class AuthService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/Proto.AuthService/AccessProtectedResource',
+            '/Authentication.AuthService/AccessProtectedResource',
             Authentication__pb2.Empty.SerializeToString,
             Authentication__pb2.AccessProtectedResourceResponse.FromString,
             options,
@@ -217,7 +217,7 @@ class AuthService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/Proto.AuthService/CleanupDb',
+            '/Authentication.AuthService/CleanupDb',
             Authentication__pb2.Empty.SerializeToString,
             Authentication__pb2.Empty.FromString,
             options,

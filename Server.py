@@ -5,11 +5,18 @@ import time
 import sqlite3
 import threading
 import logging
-import os
 import Authentication_pb2, Authentication_pb2_grpc
+import os
+from dotenv import load_dotenv
 
-# JWT Secret Key
-JWT_SECRET = 'your_jwt_secret_key'
+load_dotenv()
+
+# Retrieve the secret key from the environment variable
+jwt_secret_key = os.getenv('JWT_SECRET_KEY')
+
+# Check if the key is None and raise an error if it is not set
+if not jwt_secret_key:
+    raise ValueError("No JWT_SECRET_KEY set for Flask application")
 
 # Thread-local storage for database connections
 thread_local = threading.local()
@@ -55,7 +62,7 @@ class AuthServiceServicer(Authentication_pb2_grpc.AuthServiceServicer):
         cursor.execute('SELECT * FROM users WHERE email=? AND password=?', (request.email, request.password))
         user = cursor.fetchone()
         if user:
-            token = jwt.encode({'email': request.email, 'exp': time.time() + 600}, JWT_SECRET, algorithm='HS256')
+            token = jwt.encode({'email': request.email, 'exp': time.time() + 600}, jwt_secret_key, algorithm='HS256')
             return Authentication_pb2.LoginResponse(token=token)
         else:
             context.set_code(grpc.StatusCode.UNAUTHENTICATED)
@@ -71,7 +78,7 @@ class AuthServiceServicer(Authentication_pb2_grpc.AuthServiceServicer):
             return Authentication_pb2.AccessProtectedResourceResponse(message="Unauthorized")
 
         try:
-            jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+            jwt.decode(token, jwt_secret_key, algorithms=['HS256'])
             return Authentication_pb2.AccessProtectedResourceResponse(message="Access granted to protected method.")
         except jwt.ExpiredSignatureError:
             context.set_code(grpc.StatusCode.UNAUTHENTICATED)
